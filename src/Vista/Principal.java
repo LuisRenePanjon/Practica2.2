@@ -7,7 +7,7 @@ package Vista;
 
 /**
  *
- * @author Abuelito
+ * @author XBBC
  */
 public class Principal {
 
@@ -16,6 +16,8 @@ public class Principal {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        VentanaPrincipal vP= new VentanaPrincipal("Software de Gestion");
+        vP.setVisible(true);
     }
     
 }
