@@ -43,6 +43,11 @@ public class Resultado {
     public void setCompetencia(Competencia competencia) {
         this.competencia = competencia;
     }
+
+    @Override
+    public String toString() {
+        return  puesto + "|" + atleta.toString() + "|" + competencia.toString() ;
+    }
     
     
     

@@ -53,6 +53,11 @@ public class Competencia {
     public void setCategoria(String categoria) {
         this.categoria = categoria;
     }
+
+    @Override
+    public String toString() {
+        return nombre + "|" + deporte + "|" + ciudad + "|" + categoria ;
+    }
     
     
     

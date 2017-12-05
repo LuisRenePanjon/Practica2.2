@@ -8,7 +8,12 @@ package Controlador;
 import Modelo.Atleta;
 import Modelo.Competencia;
 import Modelo.Resultado;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -24,6 +29,27 @@ public class GestionDato {
         this.listCompetencia = listCompetencia;
         this.listResultado = listResultado;
     }
+     public boolean persistirListPersona(List<Resultado> lista) {
+
+        try {
+            FileWriter ae = new FileWriter("E:/Practica2.txt");
+            BufferedWriter escritura = new BufferedWriter(ae);
+            int i;
+            i = 0;
+            for (Resultado p : this.listResultado) {
+                escritura.append(p.toString());
+                escritura.newLine();
+
+            }
+            escritura.close();
+            return true;
+        } catch (IOException ex) {
+            Logger.getLogger(GestionDato.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+
+    }
+
 
     public boolean addAtleta(Atleta a) {
         return this.listAtleta.add(a);

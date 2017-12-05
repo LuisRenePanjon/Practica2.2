@@ -43,6 +43,11 @@ public class Atleta {
     public void setCedula(String cedula) {
         this.cedula = cedula;
     }
+
+    @Override
+    public String toString() {
+        return   nonbYAp + "|" + edad + "|" + cedula;
+    }
     
     
     
