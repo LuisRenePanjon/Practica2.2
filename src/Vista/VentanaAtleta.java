@@ -5,6 +5,7 @@
  */
 package Vista;
 
+import Controlador.EventoVentanaAtleta;
 import Controlador.GestionDato;
 import Modelo.Atleta;
 import java.util.ArrayList;
@@ -60,8 +61,8 @@ private List<JLabel> etiquetaList;
         this.botonList.add(new JButton("Guardar"));
         this.botonList.add(new JButton("Nuevo"));
         
-        //this.botonList.get(0).addActionListener(new EventoVentanaAtleta(this));
-        //this.botonList.get(1).addActionListener(new EventoVentanaAtleta(this));
+        this.botonList.get(0).addActionListener(new EventoVentanaAtleta(this));
+        this.botonList.get(1).addActionListener(new EventoVentanaAtleta(this));
         
 
         this.encabezado = new Object[3];

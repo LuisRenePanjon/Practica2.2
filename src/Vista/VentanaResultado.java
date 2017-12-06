@@ -5,6 +5,7 @@
  */
 package Vista;
 
+import Controlador.EventoVentanaResultado;
 import Controlador.GestionDato;
 import Modelo.Atleta;
 import Modelo.Competencia;
@@ -60,8 +61,8 @@ public class VentanaResultado extends JInternalFrame {
         this.botonList = new ArrayList<JButton>();
         this.botonList.add(new JButton("Guardar"));
         this.botonList.add(new JButton("Nuevo"));
-       // this.botonList.get(0).addActionListener(new EventoVentanaResultado(this));
-       // this.botonList.get(1).addActionListener(new EventoVentanaResultado(this));
+        this.botonList.get(0).addActionListener(new EventoVentanaResultado(this));
+        this.botonList.get(1).addActionListener(new EventoVentanaResultado(this));
 
         JPanel panel = new JPanel();
         this.encabezado = new Object[3];
@@ -86,13 +87,14 @@ public class VentanaResultado extends JInternalFrame {
         this.add(panel);
     }
 
-    public Object[][] cargarDatos(int f, int c) {
-        Object[][] retorno = new Object[f][c];
+    public Object[][] cargarDatosTabla(int h, int w) {
+        Object[][] retorno = new Object[h][w];
         int i = 0;
         for (Resultado r1 : this.gD.getListResultado()) {
-            retorno[i][0] = r1.getAtleta().getNonbYAp();
-            retorno[i][1] = r1.getCompetencia().getNombre();
-            retorno[i][2] = r1.getPuesto();
+            retorno[i][0] = r1.getPuesto();
+            retorno[i][1] = r1.getAtleta().getNonbYAp();
+            retorno[i][2] = r1.getCompetencia().getNombre();
+            
             i++;
         }
         return retorno;

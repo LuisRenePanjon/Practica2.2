@@ -5,6 +5,7 @@
  */
 package Vista;
 
+import Controlador.EventoVentanaCompetencia;
 import Controlador.GestionDato;
 import Modelo.Competencia;
 import java.util.ArrayList;
@@ -62,8 +63,8 @@ public class VentanaCompetencia extends JInternalFrame {
         this.botonList.add(new JButton("Guardar"));
         this.botonList.add(new JButton("Nuevo"));
         
-       // this.botonList.get(0).addActionListener(new EventoVentanaCompetencia(this));
-       // this.botonList.get(1).addActionListener(new EventoVentanaCompetencia(this));
+        this.botonList.get(0).addActionListener(new EventoVentanaCompetencia(this));
+        this.botonList.get(1).addActionListener(new EventoVentanaCompetencia(this));
 
         this.encabezado = new Object[4];
 

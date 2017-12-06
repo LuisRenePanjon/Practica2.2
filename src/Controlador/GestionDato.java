@@ -50,7 +50,30 @@ public class GestionDato {
 
     }
 
-
+      public Atleta buscarAtleta1(String txt) {
+        Atleta retorno = null;
+        int i = 0;
+        for (Atleta at : this.listAtleta) {
+            if (at.getNonbYAp().equals(txt)) {
+                i++;
+                return at;
+            }
+        }
+        return retorno;
+    }
+      
+    public Competencia buscarCompetencia1(String txt) {
+        Competencia retorno = null;
+        int i = 0;
+        for (Competencia cm : this.listCompetencia) {
+            if (cm.getNombre().equals(txt)) {
+                i++;
+                return cm;
+            }
+        }
+        return retorno;
+    }  
+     
     public boolean addAtleta(Atleta a) {
         return this.listAtleta.add(a);
     }
@@ -61,6 +84,29 @@ public class GestionDato {
         return this.listResultado.add(r);
     }
     
+    public boolean buscarAtleta(String cedul) {
+
+        boolean retorno = false;
+        int i = 0;
+        for (Atleta at : this.listAtleta) {
+            if (at.getCedula().equals(cedul)) {
+                i++;
+                retorno = true;
+            }
+        }
+        return retorno;
+    }
+    public boolean buscarCompetencia(String nom){
+        boolean retorno = false;
+        int i = 0;
+        for (Competencia c : listCompetencia) {
+            if(c.getNombre().equals(nom)){
+                i++;
+                retorno = true;
+            }
+        }
+        return retorno;
+    }
     public List<Atleta> getListAtleta() {
         return listAtleta;
     }
