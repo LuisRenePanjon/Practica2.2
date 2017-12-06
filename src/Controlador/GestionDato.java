@@ -8,7 +8,10 @@ package Controlador;
 import Modelo.Atleta;
 import Modelo.Competencia;
 import Modelo.Resultado;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
@@ -34,7 +37,8 @@ public class GestionDato {
     public boolean EscribirListResultado(List<Resultado> lista) {
 
         try {
-            FileWriter ae = new FileWriter("E:/Practica2_Resultado.txt",true);
+
+            FileWriter ae = new FileWriter("C://Practica2/Resultado.txt", true);
             BufferedWriter escritura = new BufferedWriter(ae);
             int i;
             i = 0;
@@ -45,17 +49,18 @@ public class GestionDato {
             }
             escritura.close();
             return true;
+
         } catch (IOException ex) {
             Logger.getLogger(GestionDato.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
-
     }
 
     public boolean EscribirListCompetencia(List<Competencia> lista) {
 
         try {
-            FileWriter ae = new FileWriter("E:/Practica2_Competencia.txt",true);
+
+            FileWriter ae = new FileWriter("C://Practica2/Competencia.txt", true);
             BufferedWriter escritura = new BufferedWriter(ae);
             int i;
             i = 0;
@@ -65,27 +70,32 @@ public class GestionDato {
 
             }
             escritura.close();
+
             return true;
         } catch (IOException ex) {
             Logger.getLogger(GestionDato.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
-
     }
-    
-     public boolean EscribirListAtleta(List<Atleta> lista) {
+
+    public boolean EscribirListAtleta(List<Atleta> lista) {
 
         try {
-            FileWriter ae = new FileWriter("E:/Practica2_Atleta.txt");
-            BufferedWriter escritura = new BufferedWriter(ae);
-            int i;
-            i = 0;
-            for (Atleta a : this.listAtleta) {
-                escritura.append(a.toString());
-                escritura.newLine();
+            File fichero = new File("C://Practica2");
+            fichero.mkdir();
+            if (fichero.exists()) {
 
+                FileWriter ae = new FileWriter("C://Practica2/Atleta.txt");
+                BufferedWriter escritura = new BufferedWriter(ae);
+                int i;
+                i = 0;
+                for (Atleta a : this.listAtleta) {
+                    escritura.append(a.toString());
+                    escritura.newLine();
+
+                }
+                escritura.close();
             }
-            escritura.close();
             return true;
         } catch (IOException ex) {
             Logger.getLogger(GestionDato.class.getName()).log(Level.SEVERE, null, ex);
@@ -94,6 +104,29 @@ public class GestionDato {
 
     }
 
+    public boolean LeerArchivo() {
+        try {
+            FileReader fr = new FileReader("C://Practica2/Atleta.txt");
+            BufferedReader br = new BufferedReader(fr);
+
+            String linea = "";
+            linea = br.readLine();
+            do {
+                Atleta a = new Atleta();
+                
+                a.asignarDatos(linea);
+                System.out.println("" + a.toString());
+                this.addAtleta(a);
+                linea = br.readLine();
+            } while (linea != null);
+            br.close();
+            return true;
+
+        } catch (IOException ae) {
+            return false;
+        }
+
+    }
 
     public Atleta buscarAtleta1(String txt) {
         Atleta retorno = null;
@@ -149,6 +182,18 @@ public class GestionDato {
         int i = 0;
         for (Competencia c : listCompetencia) {
             if (c.getNombre().equals(nom)) {
+                i++;
+                retorno = true;
+            }
+        }
+        return retorno;
+    }
+    
+    public boolean buscarRes(String txt ,int cod) {
+        boolean retorno = false;
+        int i = 0;
+        for (Resultado r : listResultado) {
+            if (r.getPuesto()==cod && r.getCompetencia().getNombre().equals(txt)) {
                 i++;
                 retorno = true;
             }

@@ -34,16 +34,23 @@ public class EventoVentanaResultado implements ActionListener {
                 int pos = Integer.parseInt(this.vResultado.getTxtList().get(0).getText());
                 String atl = this.vResultado.getCombobox().getSelectedItem().toString();
                 String comp = this.vResultado.getCombobox1().getSelectedItem().toString();
-                Atleta at = this.vResultado.getgD().buscarAtleta1(atl);
-                Competencia com = this.vResultado.getgD().buscarCompetencia1(comp);
-                Resultado r = new Resultado(pos, at, com);
-                this.vResultado.getgD().addResultado(r);
-                Object[][] datoRes = this.vResultado.cargarDatosTabla(this.vResultado.getgD().getListResultado().size(), 3);
-                this.vResultado.setDatos(datoRes);
-                this.vResultado.getModeloTabla().setDataVector(this.vResultado.getDatos(), this.vResultado.getEncabezado());
-                this.vResultado.getgD().EscribirListResultado(this.vResultado.getgD().getListResultado());
+
+                boolean res = this.vResultado.getgD().buscarRes(comp,pos);
+                if (res == true) {
+                    JOptionPane.showMessageDialog(vResultado, "Resultado ya  Registrado ", "Error Registro", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+
+                    Atleta at = this.vResultado.getgD().buscarAtleta1(atl);
+                    Competencia com = this.vResultado.getgD().buscarCompetencia1(comp);
+                    Resultado r = new Resultado(pos, at, com);
+                    this.vResultado.getgD().addResultado(r);
+                    Object[][] datoRes = this.vResultado.cargarDatosTabla(this.vResultado.getgD().getListResultado().size(), 3);
+                    this.vResultado.setDatos(datoRes);
+                    this.vResultado.getModeloTabla().setDataVector(this.vResultado.getDatos(), this.vResultado.getEncabezado());
+                    this.vResultado.getgD().EscribirListResultado(this.vResultado.getgD().getListResultado());
+                }
             }
-        } catch (NullPointerException npe) {
+        } catch (NumberFormatException npe) {
             JOptionPane.showMessageDialog(vResultado, "Puesto es un numero entero");
         }
 

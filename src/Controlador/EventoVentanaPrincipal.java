@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import Vista.VentanaAtleta;
 import Vista.VentanaCompetencia;
+import Vista.VentanaLeer;
 import Vista.VentanaPrincipal;
 import Vista.VentanaResultado;
 
@@ -42,6 +43,9 @@ public class EventoVentanaPrincipal implements ActionListener {
             VentanaResultado vRe = new VentanaResultado(this.vPrincipal.getgD());
             vRe.setVisible(true);
             this.vPrincipal.getEscritorio().add(vRe);
+        }
+        if (ae.getSource().equals(this.vPrincipal.getMenuItemList().get(3))) {
+            VentanaLeer vL= new VentanaLeer();
         }
 
     }

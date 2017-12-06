@@ -59,6 +59,8 @@ public class EventoVentanaCompetencia implements ActionListener {
             this.vCompetencia.getTxtList().get(1).setText("");
             this.vCompetencia.getTxtList().get(2).setText("");
             this.vCompetencia.getTxtList().get(3).setText("");
+            
+            
         }
     }
 }

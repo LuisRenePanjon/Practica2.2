@@ -20,6 +20,11 @@ public class Atleta {
         this.cedula = cedula;
     }
 
+    public Atleta() {
+    }
+
+    
+    
     public String getNonbYAp() {
         return nonbYAp;
     }
@@ -42,6 +47,26 @@ public class Atleta {
 
     public void setCedula(String cedula) {
         this.cedula = cedula;
+    }
+    
+    public void asignarDatos(String d) {
+        int pos1 = 0;
+        int pos2 = 0;
+
+        for (int i = 0; i < d.length(); i++) {
+            //System.out.println(""+d.charAt(i));
+            if (d.charAt(i) == 124 && pos1 == 0) {
+                pos1 = i;
+            }
+            if (d.charAt(i) == 124 && pos1 != 0) {
+                pos2 = i;
+            }
+        }
+
+        this.nonbYAp = d.substring(0, pos1 - 1);
+        this.edad =Integer.parseInt(d.substring(pos1 + 2, pos2 - 1));
+        this.cedula = d.substring(pos2 + 2, d.length());
+        
     }
 
     @Override
