@@ -48,6 +48,7 @@ public class EventoVentanaAtleta implements ActionListener {
                         Object[][] datoAtleta = this.vAtleta.cargaDatosTabla(this.vAtleta.getgD().getListAtleta().size(), 3);
                         this.vAtleta.setDatos(datoAtleta);
                         this.vAtleta.getModeloTabla().setDataVector(this.vAtleta.getDatos(), this.vAtleta.getEncabezado());
+                        this.vAtleta.getgD().EscribirListAtleta(this.vAtleta.getgD().getListAtleta());
                     }
                 }
             } catch (NumberFormatException numb) {

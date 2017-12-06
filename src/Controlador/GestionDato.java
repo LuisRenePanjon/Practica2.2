@@ -52,7 +52,7 @@ public class GestionDato {
 
     }
 
-    public boolean EscribirListCompetencia(List<Resultado> lista) {
+    public boolean EscribirListCompetencia(List<Competencia> lista) {
 
         try {
             FileWriter ae = new FileWriter("E:/Practica2_Competencia.txt",true);
@@ -73,7 +73,7 @@ public class GestionDato {
 
     }
     
-     public boolean EscribirListAtleta(List<Resultado> lista) {
+     public boolean EscribirListAtleta(List<Atleta> lista) {
 
         try {
             FileWriter ae = new FileWriter("E:/Practica2_Atleta.txt");

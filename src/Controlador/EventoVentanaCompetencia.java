@@ -50,6 +50,7 @@ public class EventoVentanaCompetencia implements ActionListener {
                     Object[][] datoComp = this.vCompetencia.cargaDatosTabla(this.vCompetencia.getgD().getListCompetencia().size(), 4);
                     this.vCompetencia.setDatos(datoComp);
                     this.vCompetencia.getModeloTabla().setDataVector(this.vCompetencia.getDatos(), this.vCompetencia.getEncabezado());
+                    this.vCompetencia.getgD().EscribirListCompetencia(this.vCompetencia.getgD().getListCompetencia());
                 }
             }
         }
