@@ -41,6 +41,7 @@ public class EventoVentanaResultado implements ActionListener {
                 Object[][] datoRes = this.vResultado.cargarDatosTabla(this.vResultado.getgD().getListResultado().size(), 3);
                 this.vResultado.setDatos(datoRes);
                 this.vResultado.getModeloTabla().setDataVector(this.vResultado.getDatos(), this.vResultado.getEncabezado());
+                this.vResultado.getgD().EscribirListResultado(this.vResultado.getgD().getListResultado());
             }
         } catch (NullPointerException npe) {
             JOptionPane.showMessageDialog(vResultado, "Puesto es un numero entero");

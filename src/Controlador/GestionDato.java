@@ -20,6 +20,7 @@ import java.util.logging.Logger;
  * @author Abuelito
  */
 public class GestionDato {
+
     private List<Atleta> listAtleta;
     private List<Competencia> listCompetencia;
     private List<Resultado> listResultado;
@@ -29,10 +30,11 @@ public class GestionDato {
         this.listCompetencia = listCompetencia;
         this.listResultado = listResultado;
     }
-     public boolean persistirListPersona(List<Resultado> lista) {
+
+    public boolean EscribirListResultado(List<Resultado> lista) {
 
         try {
-            FileWriter ae = new FileWriter("E:/Practica2.txt");
+            FileWriter ae = new FileWriter("E:/Practica2_Resultado.txt",true);
             BufferedWriter escritura = new BufferedWriter(ae);
             int i;
             i = 0;
@@ -50,7 +52,50 @@ public class GestionDato {
 
     }
 
-      public Atleta buscarAtleta1(String txt) {
+    public boolean EscribirListCompetencia(List<Resultado> lista) {
+
+        try {
+            FileWriter ae = new FileWriter("E:/Practica2_Competencia.txt",true);
+            BufferedWriter escritura = new BufferedWriter(ae);
+            int i;
+            i = 0;
+            for (Competencia c : this.listCompetencia) {
+                escritura.append(c.toString());
+                escritura.newLine();
+
+            }
+            escritura.close();
+            return true;
+        } catch (IOException ex) {
+            Logger.getLogger(GestionDato.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+
+    }
+    
+     public boolean EscribirListAtleta(List<Resultado> lista) {
+
+        try {
+            FileWriter ae = new FileWriter("E:/Practica2_Atleta.txt");
+            BufferedWriter escritura = new BufferedWriter(ae);
+            int i;
+            i = 0;
+            for (Atleta a : this.listAtleta) {
+                escritura.append(a.toString());
+                escritura.newLine();
+
+            }
+            escritura.close();
+            return true;
+        } catch (IOException ex) {
+            Logger.getLogger(GestionDato.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+
+    }
+
+
+    public Atleta buscarAtleta1(String txt) {
         Atleta retorno = null;
         int i = 0;
         for (Atleta at : this.listAtleta) {
@@ -61,7 +106,7 @@ public class GestionDato {
         }
         return retorno;
     }
-      
+
     public Competencia buscarCompetencia1(String txt) {
         Competencia retorno = null;
         int i = 0;
@@ -72,18 +117,20 @@ public class GestionDato {
             }
         }
         return retorno;
-    }  
-     
+    }
+
     public boolean addAtleta(Atleta a) {
         return this.listAtleta.add(a);
     }
+
     public boolean addCompetencia(Competencia c) {
         return this.listCompetencia.add(c);
     }
+
     public boolean addResultado(Resultado r) {
         return this.listResultado.add(r);
     }
-    
+
     public boolean buscarAtleta(String cedul) {
 
         boolean retorno = false;
@@ -96,17 +143,19 @@ public class GestionDato {
         }
         return retorno;
     }
-    public boolean buscarCompetencia(String nom){
+
+    public boolean buscarCompetencia(String nom) {
         boolean retorno = false;
         int i = 0;
         for (Competencia c : listCompetencia) {
-            if(c.getNombre().equals(nom)){
+            if (c.getNombre().equals(nom)) {
                 i++;
                 retorno = true;
             }
         }
         return retorno;
     }
+
     public List<Atleta> getListAtleta() {
         return listAtleta;
     }
@@ -130,8 +179,5 @@ public class GestionDato {
     public void setListResultado(List<Resultado> listResultado) {
         this.listResultado = listResultado;
     }
-    
-    
-    
-    
+
 }

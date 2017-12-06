@@ -66,9 +66,9 @@ public class VentanaResultado extends JInternalFrame {
 
         JPanel panel = new JPanel();
         this.encabezado = new Object[3];
-        this.encabezado[0] = "Atleta";
+        this.encabezado[0] = "Puesto";
         this.encabezado[1] = "Competencia";
-        this.encabezado[2] = "Puesto";
+        this.encabezado[2] = "Atleta";
         this.modeloTabla = new DefaultTableModel(this.datos, this.encabezado);
         this.tabla = new JTable(this.modeloTabla);
         this.scroll = new JScrollPane(this.tabla);
