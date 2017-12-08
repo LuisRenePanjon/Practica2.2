@@ -5,115 +5,72 @@
  */
 package Vista;
 
+import Controlador.EventoVentanaLeer;
 import Controlador.GestionDato;
-import java.util.ArrayList;
-import java.util.List;
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 import javax.swing.JInternalFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.table.DefaultTableModel;
+import javax.swing.JTextPane;
+import javax.swing.UIManager;
 
 /**
  *
  * @author SVAIO
  */
-public class VentanaLeer extends JInternalFrame{
+public class VentanaLeer extends JInternalFrame {
 
-    private List<JLabel> etiquetaList;
-    private List<JButton> botonList;
-    private Object[][] datos;
-    private Object[] encabezado;
-    private DefaultTableModel modeloTabla;
-    private JTable tabla;
-    private JScrollPane scroll;
+    private JFileChooser chooser;
+    private JTextField txt;
+    private JButton boton;
     private JComboBox combobox;
     private GestionDato gD;
-    
-    public VentanaLeer() {
+    private JTextPane txp;
+    private JScrollPane scroll;
+    public VentanaLeer(GestionDato gD) {
         super("Leer Datos", true, true, true, true);
-        this.setSize(600, 300);
+        this.gD = gD;
+        this.setDefaultCloseOperation(3);
+        this.setSize(400, 110);
         iniciaComponente();
         this.setVisible(true);
 
     }
-    
+
     public void iniciaComponente() {
-        this.etiquetaList = new ArrayList<JLabel>();
-        this.etiquetaList.add(new JLabel("Seleccionar"));
-        this.botonList = new ArrayList<JButton>();
-        this.botonList.add(new JButton("Guardar"));
-        this.combobox = new JComboBox();
-        this.combobox.addItem("Atleta");
-        this.combobox.addItem("Competencia");
-        this.combobox.addItem("Resultado");
+        //Se agrega un layout
+        setLayout(new BorderLayout());
+
+        //Se crea el editor de texto y se agrega a un scroll
+        this.txp = new JTextPane();
+        this.scroll = new JScrollPane();
+        this.scroll.setViewportView(txp);
+
+        add(this.scroll, BorderLayout.CENTER);
+
+        //Se crea un boton para abrir el archivo
+        this.boton= new JButton("Abrir");
+        this.boton.addActionListener(new EventoVentanaLeer(this));
         
-        JPanel panel = new JPanel();
-        this.encabezado = new Object[3];
-        this.encabezado[0] = "Nombre";
-        this.encabezado[1] = "Edad";
-        this.encabezado[2] = "Cedula";
-        this.modeloTabla = new DefaultTableModel(this.datos, this.encabezado);
-        this.tabla = new JTable(this.modeloTabla);
-        this.scroll = new JScrollPane(this.tabla);
-        panel.add(this.etiquetaList.get(0));
-        panel.add(this.combobox);
-        panel.add(this.botonList.get(0));
-        
-        panel.add(this.scroll);
-        this.add(panel);
+        add(this.boton, BorderLayout.NORTH);
+
+        //Tamaño de la ventana
+        setSize(500, 500);
+
+        //Esto sirve para centrar la ventana
+        //setLocationRelativeTo(null);
     }
 
-    public List<JLabel> getEtiquetaList() {
-        return etiquetaList;
+    public JTextPane getTxp() {
+        return txp;
     }
 
-    public void setEtiquetaList(List<JLabel> etiquetaList) {
-        this.etiquetaList = etiquetaList;
-    }
-
-    public List<JButton> getBotonList() {
-        return botonList;
-    }
-
-    public void setBotonList(List<JButton> botonList) {
-        this.botonList = botonList;
-    }
-
-    public Object[][] getDatos() {
-        return datos;
-    }
-
-    public void setDatos(Object[][] datos) {
-        this.datos = datos;
-    }
-
-    public Object[] getEncabezado() {
-        return encabezado;
-    }
-
-    public void setEncabezado(Object[] encabezado) {
-        this.encabezado = encabezado;
-    }
-
-    public DefaultTableModel getModeloTabla() {
-        return modeloTabla;
-    }
-
-    public void setModeloTabla(DefaultTableModel modeloTabla) {
-        this.modeloTabla = modeloTabla;
-    }
-
-    public JTable getTabla() {
-        return tabla;
-    }
-
-    public void setTabla(JTable tabla) {
-        this.tabla = tabla;
+    public void setTxp(JTextPane txp) {
+        this.txp = txp;
     }
 
     public JScrollPane getScroll() {
@@ -122,6 +79,32 @@ public class VentanaLeer extends JInternalFrame{
 
     public void setScroll(JScrollPane scroll) {
         this.scroll = scroll;
+    }
+
+    
+    
+    public JFileChooser getChooser() {
+        return chooser;
+    }
+
+    public void setChooser(JFileChooser chooser) {
+        this.chooser = chooser;
+    }
+
+    public JTextField getTxt() {
+        return txt;
+    }
+
+    public void setTxt(JTextField txt) {
+        this.txt = txt;
+    }
+
+    public JButton getBoton() {
+        return boton;
+    }
+
+    public void setBoton(JButton boton) {
+        this.boton = boton;
     }
 
     public JComboBox getCombobox() {
@@ -139,7 +122,5 @@ public class VentanaLeer extends JInternalFrame{
     public void setgD(GestionDato gD) {
         this.gD = gD;
     }
-    
-    
-    
+
 }

@@ -45,7 +45,9 @@ public class EventoVentanaPrincipal implements ActionListener {
             this.vPrincipal.getEscritorio().add(vRe);
         }
         if (ae.getSource().equals(this.vPrincipal.getMenuItemList().get(3))) {
-            VentanaLeer vL= new VentanaLeer();
+            VentanaLeer vL= new VentanaLeer(this.vPrincipal.getgD());
+            vL.setVisible(true);
+            this.vPrincipal.getEscritorio().add(vL);
         }
 
     }

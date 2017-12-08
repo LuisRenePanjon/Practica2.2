@@ -85,7 +85,7 @@ public class GestionDato {
             fichero.mkdir();
             if (fichero.exists()) {
 
-                FileWriter ae = new FileWriter("C://Practica2/Atleta.txt");
+                FileWriter ae = new FileWriter("C://Practica2/Atleta.txt",true);
                 BufferedWriter escritura = new BufferedWriter(ae);
                 int i;
                 i = 0;
@@ -104,7 +104,7 @@ public class GestionDato {
 
     }
 
-    public boolean LeerArchivo() {
+    public boolean LeerArchivoAtleta() {
         try {
             FileReader fr = new FileReader("C://Practica2/Atleta.txt");
             BufferedReader br = new BufferedReader(fr);

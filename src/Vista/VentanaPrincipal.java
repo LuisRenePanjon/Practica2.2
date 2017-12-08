@@ -50,7 +50,7 @@ public class VentanaPrincipal extends JFrame {
         this.menuItemList.add(new JMenuItem("Registro Atleta"));
         this.menuItemList.add(new JMenuItem("Registro Competencia"));
         this.menuItemList.add(new JMenuItem("Informe Resultado"));
-        this.menuItemList.add(new JMenuItem("ArchivoAtleta"));
+        this.menuItemList.add(new JMenuItem("Leer Datos"));
 
         this.setContentPane(this.escritorio);
         this.setJMenuBar(menu);
