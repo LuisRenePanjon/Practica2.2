@@ -85,7 +85,7 @@ public class GestionDato {
             fichero.mkdir();
             if (fichero.exists()) {
 
-                FileWriter ae = new FileWriter("C://Practica2/Atleta.txt",true);
+                FileWriter ae = new FileWriter("C://Practica2/Atleta.txt", true);
                 BufferedWriter escritura = new BufferedWriter(ae);
                 int i;
                 i = 0;
@@ -104,28 +104,27 @@ public class GestionDato {
 
     }
 
-    public boolean LeerArchivoAtleta() {
+    public String leerArchivo(String ruta) {
+        FileReader fr = null;
+        BufferedReader br = null;
+
+        String contenido = "";
         try {
-            FileReader fr = new FileReader("C://Practica2/Atleta.txt");
-            BufferedReader br = new BufferedReader(fr);
 
-            String linea = "";
-            linea = br.readLine();
-            do {
-                Atleta a = new Atleta();
-                
-                a.asignarDatos(linea);
-                System.out.println("" + a.toString());
-                this.addAtleta(a);
-                linea = br.readLine();
-            } while (linea != null);
-            br.close();
-            return true;
-
-        } catch (IOException ae) {
-            return false;
+            fr = new FileReader(ruta);
+            br = new BufferedReader(fr);
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                contenido += linea + "\n";
+            }
+        } catch (Exception e) {
+        } finally {
+            try {
+                br.close();
+            } catch (Exception ex) {
+            }
         }
-
+        return contenido;
     }
 
     public Atleta buscarAtleta1(String txt) {
@@ -188,12 +187,12 @@ public class GestionDato {
         }
         return retorno;
     }
-    
-    public boolean buscarRes(String txt ,int cod) {
+
+    public boolean buscarRes(String txt, int cod) {
         boolean retorno = false;
         int i = 0;
         for (Resultado r : listResultado) {
-            if (r.getPuesto()==cod && r.getCompetencia().getNombre().equals(txt)) {
+            if (r.getPuesto() == cod && r.getCompetencia().getNombre().equals(txt)) {
                 i++;
                 retorno = true;
             }

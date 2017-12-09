@@ -10,7 +10,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import javax.swing.JFileChooser;
-import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -19,6 +18,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class EventoVentanaLeer implements ActionListener {
 
     private VentanaLeer vLeer;
+    private GestionDato gD;
 
     public EventoVentanaLeer(VentanaLeer vLeer) {
         this.vLeer = vLeer;
@@ -26,22 +26,27 @@ public class EventoVentanaLeer implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
         if (e.getSource().equals(this.vLeer.getBoton())) {
-            JFileChooser fileChooser = new JFileChooser();
-            fileChooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
 
-            int result = fileChooser.showOpenDialog(this.vLeer);
+            JFileChooser abrirArchivo = new JFileChooser();
+            abrirArchivo.setFileSelectionMode(JFileChooser.FILES_ONLY);
+            int seleccion = abrirArchivo.showOpenDialog(this.vLeer);
+            if (seleccion == JFileChooser.APPROVE_OPTION) {
+                File f = abrirArchivo.getSelectedFile();
+                try {
+                    String nombre = f.getName();
+                    String path = f.getAbsolutePath();
+                    String contenido = this.vLeer.getgD().leerArchivo(path);
 
-            if (result != JFileChooser.CANCEL_OPTION) {
+                    this.vLeer.setTitle(nombre);
 
-                File fileName = fileChooser.getSelectedFile();
+                    this.vLeer.getTxp().setText(contenido);
 
-                if ((fileName == null) || (fileName.getName().equals(""))) {
-                    this.vLeer.getTxt().setText("...");
-                } else {
-                    this.vLeer.getTxt().setText(fileName.getAbsolutePath());
+                } catch (Exception exp) {
                 }
             }
         }
     }
+
 }
