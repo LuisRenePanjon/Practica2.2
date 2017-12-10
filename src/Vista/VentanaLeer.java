@@ -30,7 +30,6 @@ public class VentanaLeer extends JInternalFrame {
     public VentanaLeer(GestionDato gD) {
         super("Leer Datos", true, true, true, true);
         this.gD = gD;
-        this.setDefaultCloseOperation( EXIT_ON_CLOSE );
         this.setSize(500, 500);
         iniciaComponente();
 
